@@ -46,9 +46,12 @@ elseif (isset($_POST["createBill"])) {
     for ($x=0; $x < $noTasks ; $x++) { 
        $tasks->createTasks ($db, $taskName[$x], $dates[$x], $unit[$x], $unitPrice[$x], $amount[$x], $taxPercentage[$x], $bills->billId );
     }
-
-    redirectTo("yourbill.php?billId=$bills->billId");
-
+    if ($_POST["lang"] == "SWE") {
+      redirectTo("yourbill.php?billId=$bills->billId");
+    }
+    else {
+      redirectTo("yourbill-FI.php?billId=$bills->billId");
+    }
 }
 else {
        redirectTo("index.php"); 

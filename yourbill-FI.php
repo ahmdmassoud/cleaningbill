@@ -67,10 +67,10 @@ function redirectTo($page){
     <h1 style="text-align:center">
       <?php
       if ($bill[0]["payType"]==1) {
-        echo "Räkning";
+        echo "Lasku";
       }
       else{
-        echo "Kontantkvitto";
+        echo "Kuitti";
       }
 
       ?>
@@ -80,8 +80,8 @@ function redirectTo($page){
     <div style="float:left;">
       <div style="margin:10px">
         <h2>Kickas Hemtjänst</h2>
-        <p>Kyrkvallabrinken 26</p>
-        <p>02400 Kyrkslätt</p>
+        <p>Kyrkvallanrinne 26</p>
+        <p>02400 Kirkkonummi</p>
         <p>2224808-2</p>
       </div>
       <div style="margin:10px;margin-top:30px">
@@ -103,15 +103,15 @@ function redirectTo($page){
     </div>
     <div style="float:right">
       <table>
-        <tr><td>Datum</td><td><?php echo $bill[0]["dates"]?></td></tr>
-        <tr><td>Fakturans nummer</td><td><?php echo $bill[0]["id"]?></td></tr>
-        <tr><td>Förfallodag</td><td><?php $mod_date = strtotime($bill[0]["dates"]."+ 14 days"); echo date("d.m.Y",$mod_date);?></td></tr>
-        <tr><td>Dröjsmålsränta</td><td>8.0%</td></tr>
-        <tr><td>Referensnummer</td><td><?php echo $bill[0]["id"].createUnique($bill[0]["id"])?></td></tr>
+        <tr><td>Päiväys</td><td><?php echo $bill[0]["dates"]?></td></tr>
+        <tr><td>Laskun numero</td><td><?php echo $bill[0]["id"]?></td></tr>
+        <tr><td>Eräpäivä</td><td><?php $mod_date = strtotime($bill[0]["dates"]."+ 14 days"); echo date("d.m.Y",$mod_date);?></td></tr>
+        <tr><td>Viivästyskorko</td><td>8.0%</td></tr>
+        <tr><td>Viitenumero</td><td><?php echo $bill[0]["id"].createUnique($bill[0]["id"])?></td></tr>
       </table>
     </div>
     </div>
-    <h3 style="clear:left;padding-top:50px">Tilläggsinformation</h3>
+    <h3 style="clear:left;padding-top:50px">-</h3>
     <p>
       <?php
        if ($customer->billPayer == 0) {
@@ -127,13 +127,13 @@ function redirectTo($page){
     <div style="margin:10px">
     <table style="border-collapse:collapse" id="servicetable">
       <tr>
-        <th style="min-width:200px">Beskrivning</th>
-        <th style="min-width:50px">Antal</th>
-        <th style="min-width:50px">Enhet</th>
-        <th style="min-width:50px">á pris</th>
-        <th style="min-width:50px">Moms %</th>
-        <th style="min-width:50px">Moms €</th>
-        <th style="min-width:50px">Totalt</th>
+        <th style="min-width:200px">Kuvaus</th>
+        <th style="min-width:50px">Määrä</th>
+        <th style="min-width:50px">Yksikkö</th>
+        <th style="min-width:50px">á hinta</th>
+        <th style="min-width:50px">Alv %</th>
+        <th style="min-width:50px">Alv €</th>
+        <th style="min-width:50px">Yhteensä</th>
       </tr>
       <?php
           $db->where ("billId", $bill[0]["id"]);
@@ -155,28 +155,28 @@ function redirectTo($page){
     </table>
     </div>
     <table style="float:right">
-      <tr><td>Skattefritt pris</td><td><?php $taxFreePrice = array_sum($totalPrice) - array_sum($TaxPrice) ; echo number_format((float)$taxFreePrice, 2, '.', '')." €"?></td></tr>
-      <tr><td>Moms totalt</td><td><?php $totalTax=array_sum($TaxPrice); echo number_format((float)$totalTax, 2, '.', '')." €";?></td></tr>
-      <tr><td>Summa med moms</td><td><?php $totalPay=array_sum($totalPrice); echo number_format((float)$totalPay, 2, '.', '')." €";?></td></tr>
+      <tr><td>Veroton hinta yht</td><td><?php $taxFreePrice = array_sum($totalPrice) - array_sum($TaxPrice) ; echo number_format((float)$taxFreePrice, 2, '.', '')." €"?></td></tr>
+      <tr><td>Arvonlisävero yht</td><td><?php $totalTax=array_sum($TaxPrice); echo number_format((float)$totalTax, 2, '.', '')." €";?></td></tr>
+      <tr><td>Yhteensä</td><td><?php $totalPay=array_sum($totalPrice); echo number_format((float)$totalPay, 2, '.', '')." €";?></td></tr>
     </table>
     <div style="position:absolute;top:130vw;width:100%">
-    <p>Vi ber att Ni använder referensnumret: <span><?php echo $bill[0]["id"].createUnique($bill[0]["id"])?></span></p>
+    <p>Pyydämme käyttämään maksaessanne viitenumeroa: <span><?php echo $bill[0]["id"].createUnique($bill[0]["id"])?></span></p>
     <footer style="border-top: 1px solid #242424;width:100%">
     <table>
       <tr>
         <td>Kickas Hemtjänst Ab</td>
         <td>Ann-Christine Koroleff</td>
-        <td>Bank</td>
+        <td>Pankki</td>
         <td>Ålandsbanken</td>
       </tr>
       <tr>
-        <td>Kyrkvalla 23</td>
-        <td>Tel. 040-8482412</td>
-        <td>Kontonummer</td>
+        <td>Kyrkvallanrinne 26</td>
+        <td>Puh. 040-8482412</td>
+        <td>Tilinumero</td>
       </tr>
       <tr>
         <td>02400 Kirkkonummi</td>
-        <td>Epost: kickash70@gmail.com</td>
+        <td>Sp: kickash70@gmail.com</td>
         <td>IBAN</td>
         <td>FI83 66010001059161</td>
       </tr>

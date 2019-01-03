@@ -37,7 +37,6 @@
       border: 1px solid #dddddd;
       text-align: left;
       padding: 8px;
-      cursor: pointer;
     }
     .selected {
       background-color: #65a3e2;
@@ -129,6 +128,19 @@
         </form>
         </div>
       </div>
+      <h2 class="titles">Tidigare räkningar</h2>
+      <div style="border: 2px solid #0a0500;overflow:auto;height:200px">
+        <table>
+        <?php
+          $bills = $db->get('bills');
+          
+          for ($i=0; $i <count($bills) ; $i++) {         
+            $customer->getCustomerBy($db,"id", $bills[$i]['customerId']);
+            echo"<tr class=\"billitem\"><td>{$bills[$i]['id']}</td><td>{$bills[$i]['dates']}</td><td>{$customer->name}</td></tr>";
+          }
+        ?>
+        </table>
+      </div>
     </div>
   <form method="POST" action="process.php"> 
     <div class="halfscreen" style="background-color:#EFF1F3">
@@ -156,6 +168,10 @@
       <div style="float:left;width:auto">
         <input type=radio name=payType value=0 checked style="margin:10px" />Kontantkvitto<br/>
         <input type=radio name=payType value=1 style="margin:10px" />Räkning 
+      </div>
+      <div style="float:left;width:auto">
+        <input type=radio name=lang value=SWE checked style="margin:10px" />Svenska<br/>
+        <input type=radio name=lang value=FIN style="margin:10px" />Finska 
       </div>
       <input type="submit" id="submit" name="createBill" style="width:100%;height:50px" class=button value="Skapa"></input>
     </div>
