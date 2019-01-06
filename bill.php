@@ -49,7 +49,8 @@ createUnique("2");
     }
     td {
       border-color: #242424;
-      border-width: 0px 1px
+      border-width: 0px 1px;
+      font-size: inherit
     }
     * {margin: 0}
   </style>
@@ -118,11 +119,11 @@ createUnique("2");
       <tr><td>Moms totalt</td><td>{{tax}}</td></tr>
       <tr><td>Summa med moms</td><td>{{totalTaxedPrice}}</td></tr>
     </table>
-    <div styl e="position:absolute;bottom:0;height:20vw;width:100%">
+    <div style="position:relative;height:40vw;width:100%">
     <p>Vi ber att Ni använder referensnumret: <span>{{functionA(unique_number)}}</span></p>
-    <footer sty le="border-top: 1px solid #242424;width:100%">
-    <table>
-      <tr>
+    <footer style="font-size:5px;border-top: 1px solid #242424;width:100%">
+    <table style="color:purple;font-size:5px">
+      <tr style="font-size:5px">
         <td>Kickas Hemtjänst Ab</td>
         <td>Ann-Christine Koroleff</td>
         <td>Bank</td>

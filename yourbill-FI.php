@@ -61,10 +61,11 @@ function redirectTo($page){
       padding: 5px 2px;
     }
     * {margin: 0}
+    .b {text-align: right}
   </style>
   <body>
     <div style="width:100%;height:101vw;margin: 0 0 20vw">
-    <h1 style="text-align:center">
+    <h2 style="margin-left:490px">
       <?php
       if ($bill[0]["payType"]==1) {
         echo "Lasku";
@@ -74,7 +75,7 @@ function redirectTo($page){
       }
 
       ?>
-    </h1>    
+    </h2>    
     <div>
     <div style="float:left"><img src="logo.png" style="height:150px;" /></div>
     <div style="float:left;">
@@ -155,14 +156,14 @@ function redirectTo($page){
     </table>
     </div>
     <table style="float:right">
-      <tr><td>Veroton hinta yht</td><td><?php $taxFreePrice = array_sum($totalPrice) - array_sum($TaxPrice) ; echo number_format((float)$taxFreePrice, 2, '.', '')." €"?></td></tr>
-      <tr><td>Arvonlisävero yht</td><td><?php $totalTax=array_sum($TaxPrice); echo number_format((float)$totalTax, 2, '.', '')." €";?></td></tr>
-      <tr><td>Yhteensä</td><td><?php $totalPay=array_sum($totalPrice); echo number_format((float)$totalPay, 2, '.', '')." €";?></td></tr>
+      <tr><td>Veroton hinta yht</td><td class="b"><?php $taxFreePrice = array_sum($totalPrice) - array_sum($TaxPrice) ; echo number_format((float)$taxFreePrice, 2, '.', '')." €"?></td></tr>
+      <tr><td>Arvonlisävero yht</td><td class="b"><?php $totalTax=array_sum($TaxPrice); echo number_format((float)$totalTax, 2, '.', '')." €";?></td></tr>
+      <tr><td>Yhteensä</td><td class="b"><?php $totalPay=array_sum($totalPrice); echo number_format((float)$totalPay, 2, '.', '')." €";?></td></tr>
     </table>
-    <div style="position:absolute;top:130vw;width:100%">
+    <div style="position:absolute;top:120vw;width:100%">
     <p>Pyydämme käyttämään maksaessanne viitenumeroa: <span><?php echo $bill[0]["id"].createUnique($bill[0]["id"])?></span></p>
     <footer style="border-top: 1px solid #242424;width:100%">
-    <table>
+    <table style="font-size:19px">
       <tr>
         <td>Kickas Hemtjänst Ab</td>
         <td>Ann-Christine Koroleff</td>
@@ -178,7 +179,7 @@ function redirectTo($page){
         <td>02400 Kirkkonummi</td>
         <td>Sp: kickash70@gmail.com</td>
         <td>IBAN</td>
-        <td>FI83 66010001059161</td>
+        <td>FI83 6601 0001 0591 61</td>
       </tr>
     </table>
     </footer>

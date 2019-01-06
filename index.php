@@ -132,15 +132,14 @@
       <div style="border: 2px solid #0a0500;overflow:auto;height:200px">
         <table>
         <?php
-          $bills = $db->get('bills');
-          
+          $bills = $db->get('bills');          
           for ($i=0; $i <count($bills) ; $i++) {         
             $customer->getCustomerBy($db,"id", $bills[$i]['customerId']);
             echo"<tr class=\"billitem\"><td>{$bills[$i]['id']}</td><td>{$bills[$i]['dates']}</td><td>{$customer->name}</td></tr>";
           }
         ?>
         </table>
-      </div>
+      </div> 
     </div>
   <form method="POST" action="process.php"> 
     <div class="halfscreen" style="background-color:#EFF1F3">
